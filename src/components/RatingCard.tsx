@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import iconStar from "../assets/icon-star.svg";
 
 type Props = {
@@ -19,9 +19,14 @@ export default function Rating({ onSubmit }: Props) {
     </button>
   ));
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    onSubmit(selectedRating);
+  }
+
   return (
     <form
-      onSubmit={() => onSubmit(selectedRating)}
+      onSubmit={handleSubmit}
       className="max-w-[22rem] bg-dark-blue-clr p-6 rounded-xl shadow-md flex flex-col gap-6"
     >
       <div className="w-10 h-10 bg-dark-blue-clr brightness-125 rounded-full flex items-center justify-center">
